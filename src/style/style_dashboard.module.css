@@ -1,0 +1,492 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+.container{
+    font-family: Nunito;
+    max-width: 1500px;
+    margin: auto;
+}
+.container .title{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.container .allspec_p{
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 500;
+    margin-top: 20px;
+    font-style: italic;
+}
+.container .error{
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-top: 30px;
+    color: red;
+    text-align: center;
+}
+.container .allspec{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    margin-top: 30px;
+    padding: 0 20px;
+}
+
+.container .allspec > div{
+    height: 300px;
+    aspect-ratio: 1/1;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 10px rgba(128, 128, 128, 0.199);
+    cursor: pointer;
+    position: relative;
+}
+.container .allspec > div::before{
+    content: '';
+    position: absolute;
+    height: 100px;
+    aspect-ratio: 1/1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(128, 128, 128, 0.103);
+    border-radius: 20px;
+    transition: .2s;
+    opacity: 0;
+}
+
+.container .allspec > div:hover::before{
+    height: 300px;
+    opacity: 1;
+}
+.container .allspec > div:active::before{
+    background-color: rgba(128, 128, 128, 0.199);
+}
+
+.container .allspec img{
+    display: block;
+    width: 70%;
+    margin: auto;
+}
+.container .allspec .creationinfo{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.container .allspec h3{
+    margin-left: 10px;
+}
+
+.createspec{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 40px;
+}
+.createspec div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex: 1;
+}
+.createspec div p{
+    font-weight: 500;
+    font-size: 1.3rem;
+    white-space: nowrap;
+}
+
+.createspec div span{
+    font-weight: 600;
+    font-size: 4rem;
+}
+
+.createspec div button{
+    background-color: white;
+    border: none;
+    box-shadow: 0 0 5px 5px rgba(128, 128, 128, 0.199);
+    color: gray;
+    padding: 10px 40px;
+    font-size: 2rem;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: .2s;
+}
+.createspec div button:hover{
+    background-color: rgba(128, 128, 128, 0.103);
+}
+.createspec div button:active{
+    background-color: rgba(128, 128, 128, 0.199);
+}
+
+.createspecform{
+    width: 90%;
+    position: fixed;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%);
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 10px rgba(128, 128, 128, 0.199);
+    height: calc(100vh - 130px);
+    margin-top: 110px;
+    max-width: 600px;
+    animation: createspecform .2s ease-in forwards;
+    overflow-y: scroll;
+}
+
+.createspecform h1{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.createspecform .closeform{
+    background-color: transparent;
+    font-size: 2rem;
+    border: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+}
+
+.createspecform .closeform:hover{
+    opacity: .7;
+}
+
+.createspecform .basicspecinfo{
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.createspecform .basicspecinfo input{
+    flex: 1;
+    border-radius: 100px;
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    border: 2px gray solid;
+    height: auto;
+}
+
+.createspecform .basicspecinfo > div > button{
+    background-color: white;
+    width: 130px;
+    font-size: 1rem;
+    padding: calc(10px + .1rem) 0;
+    cursor: pointer;
+    border: 2px gray solid;
+}
+
+.createspecform .basicspecinfo > div > button:hover{
+    background-color: rgb(241, 241, 241);
+}
+.createspecform .basicspecinfo .options{
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 130px;
+    z-index: 1000;
+}
+.createspecform .basicspecinfo .options button{
+    background-color: white;
+    padding: 8px 0;
+    font-size: .9rem;
+    cursor: pointer;
+    border: 1px gray solid;
+    margin-top: 5px;
+}
+
+.createspecform .basicspecinfo .options button:hover{
+    background-color: rgb(241, 241, 241);
+}
+
+.createspecform .basicspecinfo .options.visible{
+    visibility: visible;
+}
+.createspecform .search{
+    position: relative;
+}
+.createspecform .search input{
+    display: block;
+    width: 100%;
+    padding: 5px;
+    margin-top: 20px;
+    border-radius: 100px;
+    border: 2px grey solid;
+    text-align: center;
+    font-size: 1rem;
+}
+.createspecform .search .searchBox{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    margin-top: 40px;
+    overflow-y: scroll;
+    height: 200px;
+    background-color: rgb(241, 241, 241);
+    padding: 10px 20px;
+    resize: vertical;
+    border: 2px lightgray solid;
+    z-index: 1000;
+}
+.createspecform .search .searchBox .product{
+    background-color: white;
+    padding: 10px 10px;
+    cursor: pointer;
+    transition: .2s;
+}   
+.createspecform .search .searchBox .product:hover{
+    background-color: #76ffdf;
+}
+.createspecform .search p{
+    color: red;
+    font-size: 1rem;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.createspecform .createspecbtn {
+  margin-top: 20px;
+  position: sticky;
+  bottom: 0;
+  margin-left: auto;
+  display: block;
+  font-size: 1.2rem;
+  max-width: 130px;
+  border: 4px solid #00BD91;
+  border-radius: 1000px;
+  cursor: pointer;
+  background-color: white;
+  transition: .2s;
+  padding: 5px 20px;
+  z-index: 100;
+}
+
+.createspecform .createspecbtn:hover{
+    background-color: #03d8a6;
+    color: white;
+}
+.createspecform .createspecbtn:active{
+    scale: 0.95;
+}
+
+.createspecform .column{
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+}
+
+.createspecform .column .task{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 5px;
+    border-radius: 5px;
+    gap: 10px;
+    cursor: grab;
+}
+
+.createspecform .column .task:active{
+    cursor: grabbing;
+}
+
+.createspecform .column .task span{
+    user-select: none;
+}
+
+.createspecform .column .task > input{
+    padding: 2px 5px;
+    border-radius: 5px;
+    border: 2px solid gray;
+    width: 80px;
+    font-size: 1rem;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+ .createspecform .column .task span p{
+    display: inline;
+    vertical-align: middle;
+    line-height: 1.5;
+ }
+
+
+ .createspecform .column .task span input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+    margin-right: 5px;
+  width: 22px;
+  height: 22px;
+  border: 2.5px solid #4CAF50;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  vertical-align: middle;
+  background-color: transparent;
+
+}
+
+ .createspecform .column .task span input:checked {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+ .createspecform .column .task span input:checked::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 0.2s ease-in-out;
+}
+
+ .createspecform .column .task span input::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.2s ease-in-out;
+}
+
+ .createspecform .specificationfooter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+ }
+
+  .createspecform .specificationfooter button{
+    background-color: #fbe3e3;           /* nešto jača crvena */
+  color: #b70000;                      /* izraženija crvena za tekst */
+  border: 1px solid #e9bdbd;           /* blago pojačana ivica */
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: .2s;
+  }
+    .createspecform .specificationfooter button:hover{
+        background-color: #f5c2c2;
+  color: #7a0000;      /* svetlocrvena pozadina pri hoveru */ 
+    }
+
+    .createspecform .specificationfooter button:active{
+        scale: 0.95;
+    }
+
+    .createspecform .specificationfooter button:disabled {
+  background-color: #f0f0f0;         /* siva pozadina */
+  color: #a0a0a0;                    /* siva boja teksta */
+  border: 1px solid #d0d0d0;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+  .createspecform .specificationfooter .pricediv{
+    position: relative;
+  }
+
+    .createspecform .specificationfooter .pricediv input{
+    width: 140px;
+    padding: 5px 10px;
+    border-radius: 100px;
+    border: 2px solid gray;
+    font-size: 1.2rem;
+    text-align: center;
+    padding-right: 30px;
+    }
+
+    .createspecform .specificationfooter .pricediv input::-webkit-inner-spin-button,
+    .createspecform .specificationfooter .pricediv input::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    
+        .createspecform .specificationfooter .pricediv label{
+    font-size: 1.5rem;
+    font-weight: 700;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translate(0, -50%);
+        }
+
+        .container .successSpecificationPopup{
+    position: fixed;
+    z-index: 100;
+    max-width: 350px;
+    width: 90%;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px 10px rgba(128, 128, 128, 0.199);
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    animation: animateSuccess .3s ease-in-out;
+}
+
+.container .successSpecificationPopup h3, .success p{
+    text-align: center;
+}
+
+.container .successSpecificationPopup button{
+    font-size: 2rem;
+    max-width: 130px;
+    width: 90%;
+    border: 4px solid #00BD91;
+    border-radius: 1000px;
+    cursor: pointer;
+    background-color: white;
+    transition: .3s;
+}
+.container .successSpecificationPopup button:hover{
+    background-color: #03d8a6;
+    color: white;
+}
+@keyframes createspecform {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes animateSuccess {
+    0%{
+        transform: translate(-50%, -50%) scale(.5);
+    }
+    85%{
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+    100%{
+        transform: translate(-50%, -50%) scale(1);
+    }
+}

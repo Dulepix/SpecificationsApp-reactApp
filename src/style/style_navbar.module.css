@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.nav{
+    width: 100%;
+    position: sticky;
+    border-bottom: 2px gray solid;
+    z-index: 9999999;
+}
+.nav div{
+    display: flex;
+    padding: 5px 20px;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Nunito;
+    max-width: 1500px;
+    margin-left: 50%;
+    transform: translate(-50%, 0);
+    width: 100%;
+}
+.nav .logo{
+    width: 70px;
+}
+.nav .logo img{
+    height: 70px;
+}
+.nav .logo img:hover{
+    opacity: .7;
+}
+.nav ul{
+    width:  100%;
+    display: flex;
+    gap: 70px;
+    justify-content: center;
+    background-color: white;
+}
+.nav ul li{
+    list-style: none;
+}
+.nav ul li a{
+    text-decoration: none;
+    color: black;
+    padding: 5px 30px;
+    background-color: white;
+    border: 1px black solid;
+    border-radius: 100px;
+}
+.nav ul li a:hover{
+    background-color: rgb(247, 247, 247);
+}
+.nav .profile{ 
+    font-size: 1.2rem;
+    color: black;
+    max-width: 120px;
+    min-width: 80px;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.nav button {
+    display: none;
+    height: 30px;
+    border: none;
+    background-color: white;
+    font-size: 2rem;
+    cursor: pointer;
+}
+.nav button:hover {
+    color: gray;
+}
+.nav .active {
+    display: flex;
+    animation: navbarshow .3s;
+    z-index: 9999999;
+}
+.nav .login{
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    display: block;
+    width: 80px;
+    text-align: center;
+    border: 2px black solid;
+    height: 35px;
+    line-height: 31px;
+    border-radius: 10px;
+    transition: .3s;
+    font-size: 1.1rem;
+}
+.nav .login:hover{
+    background-color: black;
+    color: white;
+}
+@media (max-width: 1050px) {
+    .nav ul{
+        gap: 5%;
+    }
+}
+
+@media (max-width: 900px) {
+    .nav button{
+        display: block;
+    }
+    .nav ul{
+        position: absolute;
+        flex-direction: column;
+        top: 110px;
+        left: 50%;
+        width: 200px;
+        transform: translate(-50%);
+        padding: 20px;
+        border-radius: 30px;
+        box-shadow: 0 5px 15px 0 rgb(189, 189, 189);
+        gap: 30px;
+        display: none;
+    }
+    .nav ul li{
+        width: 100%;
+    }
+    .nav ul li a{
+        display: block;
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+        text-align: center;
+    }
+    .profile{
+        width: 80px;
+    }
+}
+@media (max-width: 400px) {
+    .nav div{
+        padding: 5px 5px;
+    }
+    .nav ul{
+        width: 90%;
+    }
+    .nav .logo img{
+        height: 55px;
+    }
+    .nav .profile {
+        font-size: 1rem;
+        max-width: 120px;
+    }
+}
+
+@keyframes navbarshow {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
