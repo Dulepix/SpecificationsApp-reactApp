@@ -36,7 +36,7 @@ function CreateSpecificationForm({ DashboardCss, setCreatespecformCheck, setCrea
     }
 
     try {
-      const url = BackendLink() + "/react_backend/Includes/dashboard.inc.php";
+      const url = BackendLink() + "/Includes/dashboard.inc.php";
       const headers = {
         "Accept": "application/json",
         "Content-type": "application/json",
@@ -115,7 +115,7 @@ const loadMoreProducts = useMemo(() =>
     setCreateSpecError("");
 
     try {
-      const url = BackendLink() + "/react_backend/Includes/dashboard.inc.php";
+      const url = BackendLink() + "/Includes/dashboard.inc.php";
       const headers = {
         "Accept": "application/json",
         "Content-type": "application/json",

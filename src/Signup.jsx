@@ -60,7 +60,7 @@ export function Signup() {
     setLoading(true);
 
     try {
-      const url = BackendLink() + "/react_backend/Includes/signup.inc.php";
+      const url = BackendLink() + "/Includes/signup.inc.php";
 
       const headers = {
         "Accept": "application/json",
@@ -105,7 +105,7 @@ export function Signup() {
   useEffect(() => {
     async function validateToken(){
       try {
-          const url = BackendLink() + "/react_backend/Includes/getusername.inc.php";
+          const url = BackendLink() + "/Includes/getusername.inc.php";
           const headers = {
               "Accept": "application/json",
               "Content-type": "application/json",

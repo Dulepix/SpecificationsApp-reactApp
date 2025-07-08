@@ -28,7 +28,7 @@ export function Login(){
         event.preventDefault();
 
         try {
-            const url = BackendLink() + "/react_backend/Includes/login.inc.php";
+            const url = BackendLink() + "/Includes/login.inc.php";
             const headers = {
                 "Accept": "application/json",
                 "Content-type": "application/json"
@@ -65,7 +65,7 @@ export function Login(){
     useEffect(() => {
         async function validateToken(){
             try {
-                const url = BackendLink() + "/react_backend/Includes/getusername.inc.php";
+                const url = BackendLink() + "/Includes/getusername.inc.php";
                 const headers = {
                     "Accept": "application/json",
                     "Content-type": "application/json",

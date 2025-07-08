@@ -26,7 +26,7 @@ export function Dashboard() {
     setPageloading(true);   
 
     try {
-      const url = BackendLink() + "/react_backend/Includes/dashboard.inc.php";
+      const url = BackendLink() + "/Includes/dashboard.inc.php";
       const response = await fetch(url, {
         method: "POST",
         headers: {

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import BackendLink from "./components/BackendLink";
+
 
 //images
 
@@ -23,7 +25,7 @@ export function Validate() {
     useEffect(() => {
         const verifyToken = async () => {
             try {
-                const url = "http://localhost/react_backend/Includes/emailvalidation.inc.php";
+                const url = BackendLink() + "/Includes/emailvalidation.inc.php";
                 const headers = {
                     "Accept": "text/plain",
                     "Content-Type": "text/plain"
