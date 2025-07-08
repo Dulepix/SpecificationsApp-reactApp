@@ -20,7 +20,7 @@ export function Dashboard() {
 
   const [createspecformCheck, setCreatespecformCheck] = useState(false);
   const [createspecFormSuccess, setCreatespecFormSuccess] = useState(false);
-
+console.log("Dashboard component loaded");
 
  const pageload = useCallback(async () => {
     setPageloading(true);   
