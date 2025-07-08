@@ -27,6 +27,7 @@ export function Dashboard() {
 
     try {
       const url = BackendLink() + "/Includes/dashboard.inc.php";
+      console.log("Fetching data from:", url);
       const response = await fetch(url, {
         method: "POST",
         headers: {
