@@ -31,12 +31,12 @@ const VisibilityDropDown = ({ DashboardCss, selectedOption, setSelectedOption}) 
     ];
     return (
         <div ref={dropdownRef}>
-            <button onClick={() => setDropdownToggled(!dropdownToggled)}>{selectedOption ? selectedOption.value : "Select Visibility"}</button>
+            <button onClick={() => setDropdownToggled(!dropdownToggled)}>{selectedOption == 0 || selectedOption == 1 ? dropdownOptions.find(item => item.id == selectedOption).value : "Select Visibility"}</button>
             <div className={`${DashboardCss.options} ${dropdownToggled ? DashboardCss.visible : ""}`}>
                 {dropdownOptions.map((option, index) => {
                     return (
                         <button onClick={() => {
-                            setSelectedOption(option)
+                            setSelectedOption(option.id)
                             setDropdownToggled(false)
                         }} key={index}>{option.value}</button>
                     );

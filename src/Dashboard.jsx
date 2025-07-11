@@ -7,6 +7,7 @@ import BackendLink from "./components/BackendLink";
 
 import DashboardCss from "./style/style_dashboard.module.css";
 import SpecImg from "./assets/img/sheet.png";
+import EditSpecificationForm from "./components/EditSpecificationForm";
 
 export function Dashboard() {
   const [userId, setUserId] = useState(null)
@@ -20,14 +21,14 @@ export function Dashboard() {
 
   const [createspecformCheck, setCreatespecformCheck] = useState(false);
   const [createspecFormSuccess, setCreatespecFormSuccess] = useState(false);
-console.log("Dashboard component loaded");
+
+  const [editspecformId, setEditspecformId] = useState(false);
 
  const pageload = useCallback(async () => {
     setPageloading(true);   
 
     try {
       const url = BackendLink() + "/Includes/dashboard.inc.php";
-      console.log("Fetching data from:", url);
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -47,7 +48,6 @@ console.log("Dashboard component loaded");
         setSpecifications(data.data);
         setTotalspec(data.data.length);
 
-        // Broj specifikacija kreiranih ovog meseca
         const today  = new Date();
         const month  = today.getMonth();
         const year   = today.getFullYear();
@@ -106,7 +106,7 @@ console.log("Dashboard component loaded");
               <p className={DashboardCss.allspec_p}>All specifications</p>
               <div className={DashboardCss.allspec}>
                 {specifications.map((spec, index) => (
-                  <div key={index} onClick={() => handleSpecClick(spec.Id)}>
+                  <div key={index} onClick={() => setEditspecformId(spec.Id)}>
                     <div className={DashboardCss.creationinfo}>
                       <p>{spec.CreatedAt}</p>
                       <p>
@@ -122,7 +122,7 @@ console.log("Dashboard component loaded");
             )}
 
             {createspecformCheck && <CreateSpecificationForm DashboardCss={DashboardCss} setCreatespecformCheck={setCreatespecformCheck} setCreatespecFormSuccess={setCreatespecFormSuccess}/>}
-
+            {editspecformId && <EditSpecificationForm DashboardCss={DashboardCss} editspecformId={editspecformId} setEditspecformId={setEditspecformId} />}
             {createspecFormSuccess && (
               <div className={DashboardCss.successSpecificationPopup}>
                 <h3>Successfully inserted a specification</h3>

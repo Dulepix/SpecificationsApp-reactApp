@@ -39,6 +39,7 @@
     box-shadow: 0 0 10px 10px rgba(128, 128, 128, 0.199);
     cursor: pointer;
     position: relative;
+    user-select: none;
 }
 .container .allspec > div::before{
     content: '';
@@ -134,6 +135,8 @@
     max-width: 600px;
     animation: createspecform .2s ease-in forwards;
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
 }
 
 .createspecform h1{
@@ -225,7 +228,7 @@
     position: absolute;
     top: 0;
     width: 100%;
-    margin-top: 40px;
+    margin-top: 55px;
     overflow-y: scroll;
     height: 200px;
     background-color: rgb(241, 241, 241);
@@ -244,18 +247,30 @@
     background-color: #76ffdf;
 }
 .createspecform .search p{
-    color: red;
     font-size: 1rem;
-    margin-top: 15px;
+    margin: 15px 0;
     text-align: center;
+}
+.createspecform .search p span:first-of-type{
+    color: red;
+}
+
+.createspecform .search p span:last-of-type{
+    color: green;
+}
+
+.createspecform .stickycontainer{
+    position: sticky;
+    bottom: 0;
+    margin-left: auto;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
 }
 
 .createspecform .createspecbtn {
-  margin-top: 20px;
-  position: sticky;
-  bottom: 0;
-  margin-left: auto;
-  display: block;
   font-size: 1.2rem;
   max-width: 130px;
   border: 4px solid #00BD91;
@@ -373,7 +388,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
+    margin: 20px 0;
  }
 
   .createspecform .specificationfooter button{
@@ -469,6 +484,27 @@
 .container .successSpecificationPopup button:hover{
     background-color: #03d8a6;
     color: white;
+}
+
+
+.createspecform .deletespecbtn {
+  font-size: 1.2rem;
+  max-width: 130px;
+  border: 4px solid #00BD91;
+  border-radius: 1000px;
+  cursor: pointer;
+  background-color: white;
+  transition: .2s;
+  padding: 5px 20px;
+  z-index: 100;
+}
+
+.createspecform .deletespecbtn:hover{
+    background-color: #03d8a6;
+    color: white;
+}
+.createspecform .deletespecbtn:active{
+    scale: 0.95;
 }
 @keyframes createspecform {
     0%{
