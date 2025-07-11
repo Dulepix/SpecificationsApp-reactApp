@@ -3,8 +3,8 @@ import { useCallback } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
-export const Task = ({ DashboardCss, ProductSizeId, Product, Sizes, Index, Data, setData}) => {
-  const { attributes, listeners, setNodeRef, transform, transition } =
+export const Task = ({ DashboardCss, ProductSizeId, Product, Sizes, Index, Quantity, Data, setData}) => {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
   useSortable({ id: ProductSizeId });
 
   const currentItem = Data.find(item => item.ProductSizeId === ProductSizeId); 
@@ -13,6 +13,7 @@ export const Task = ({ DashboardCss, ProductSizeId, Product, Sizes, Index, Data,
     transition,
     transform: CSS.Transform.toString(transform),
     cursor: 'grab',
+    border: isDragging ? '1px solid #919191ff' : '1px solid #ffffff',
   };
 
   const modifiedListeners = {
@@ -57,7 +58,7 @@ export const Task = ({ DashboardCss, ProductSizeId, Product, Sizes, Index, Data,
   return (
     <div ref={setNodeRef} {...attributes} {...modifiedListeners} style={style} className={DashboardCss.task}> 
       <span><input type='checkbox' checked={currentItem.Checked} onClick={(e) => handleCheckboxClick(e)} readOnly/><p>{Index}. {Product} {Sizes}</p></span>
-      <input type='text' onChange={(e) => handleQuantityChange(e)}/>
+      <input type='text' value={Quantity} onChange={(e) => handleQuantityChange(e)}/>
     </div>
   );
 };

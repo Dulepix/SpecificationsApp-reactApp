@@ -3,8 +3,7 @@ import NavBar from "./components/NavBar";
 import BackendLink from "./components/BackendLink";
 
 
-
-export function Profile(){
+export function Home() {
     const[username, setUsername] = useState(null);
     const[pageloading, setPageloading] = useState(true);
 

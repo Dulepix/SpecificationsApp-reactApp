@@ -24,8 +24,10 @@ export function Dashboard() {
 
   const [editspecformId, setEditspecformId] = useState(false);
 
- const pageload = useCallback(async () => {
-    setPageloading(true);   
+
+ const pageload = useCallback(async (specLoadOnly) => {
+    if (!specLoadOnly)
+      setPageloading(true);   
 
     try {
       const url = BackendLink() + "/Includes/dashboard.inc.php";
@@ -42,9 +44,12 @@ export function Dashboard() {
       const data = await response.json();
 
       if (data.status === "success") {
-        setAuthenticated(true);
-        setUserId(data.userId);
-        setUsername(data.username);
+        if (!specLoadOnly) {
+          setAuthenticated(true);
+          setUserId(data.userId);
+          setUsername(data.username);
+        }
+        
         setSpecifications(data.data);
         setTotalspec(data.data.length);
 
@@ -74,7 +79,7 @@ export function Dashboard() {
 
    
   useEffect(() => {
-    pageload();
+    pageload(false);
   }, [pageload]); 
 
   if (pageloading) {
@@ -122,11 +127,11 @@ export function Dashboard() {
             )}
 
             {createspecformCheck && <CreateSpecificationForm DashboardCss={DashboardCss} setCreatespecformCheck={setCreatespecformCheck} setCreatespecFormSuccess={setCreatespecFormSuccess}/>}
-            {editspecformId && <EditSpecificationForm DashboardCss={DashboardCss} editspecformId={editspecformId} setEditspecformId={setEditspecformId} />}
+            {editspecformId && <EditSpecificationForm DashboardCss={DashboardCss} editspecformId={editspecformId} setEditspecformId={setEditspecformId} pageload={pageload}/>}
             {createspecFormSuccess && (
               <div className={DashboardCss.successSpecificationPopup}>
                 <h3>Successfully inserted a specification</h3>
-                <button onClick={() => {setCreatespecFormSuccess(false); pageload();}}><FontAwesomeIcon icon={faCheck} /></button>
+                <button onClick={() => {setCreatespecFormSuccess(false); pageload(true);}}><FontAwesomeIcon icon={faCheck} /></button>
               </div>
             )}
           </>

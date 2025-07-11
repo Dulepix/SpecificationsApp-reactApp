@@ -17,7 +17,7 @@ function NavBar(props) {
     return (
         <nav className={NavBarCss.nav}>
             <div>
-                <a className={NavBarCss.logo} href="/"><img src={Logo} alt="Logo" /></a>
+                <a className={NavBarCss.logo} href="/home"><img src={Logo} alt="Logo" /></a>
                 <ul ref={navbarRef}>
                     <li><a href="home">Home</a></li>
                     <li><a href="dashboard">Dashboard</a></li>

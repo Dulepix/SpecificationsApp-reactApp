@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useNavigate } from "react-router-dom";
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import NavBar from "./components/NavBar";
 import BackendLink from "./components/BackendLink";
@@ -24,7 +25,7 @@ export function Signup() {
   const[pageloading, setPageloading] = useState(true);
 
 
-
+  const navigate = useNavigate();
 
   const handleInputChange = (e, type) => {
     switch(type){
@@ -117,10 +118,8 @@ export function Signup() {
           });
           const responseData = await response.json();
           if(responseData.status === "success"){
-            setUsrname(responseData.username);
-          } else {
-            console.log(responseData.message);
-          }
+            navigate("/dashboard");
+          } 
       } catch (err) {
           console.error(err);
       }finally{

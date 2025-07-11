@@ -6,7 +6,7 @@ import BackendLink from "./BackendLink";
 import DndContextSection from "./Task/DndContextSection";
 import Search from "./Task/Search";
 
-function EditSpecificationForm({DashboardCss, editspecformId, setEditspecformId}) {
+function EditSpecificationForm({DashboardCss, editspecformId, setEditspecformId, pageload}) {
   const [specName, setSpecName] = useState("");
   const [selectedOption, setSelectedOption] = useState(null);
   const [editSpecError, setEditSpecError] = useState("");
@@ -18,6 +18,8 @@ function EditSpecificationForm({DashboardCss, editspecformId, setEditspecformId}
   const [selectedOptionOld, setSelectedOptionOld] = useState(null);
   const [dataOld, setDataOld] = useState([]);
   const [priceOld, setPriceOld] = useState("");
+
+  const [confimDelete, setConfirmDelete] = useState(false);
 
 useEffect(() => {
   const fetchData = async () => {
@@ -92,6 +94,7 @@ useEffect(() => {
         setSelectedOptionOld(selectedOption);
         setDataOld(data);
         setEditSpecFormSuccess("Specification updated successfully");
+        pageload(true);
       } else {
         setEditSpecError(responseData.message);
       }
@@ -100,6 +103,32 @@ useEffect(() => {
       setEditSpecError("An error occurred while creating the specification.");
     }
  }
+
+  const deleteSpecification = async () => {
+    try {
+      const url = BackendLink() + "/Includes/dashboard.inc.php";
+      const headers = {
+        "Accept": "application/json",
+        "Content-type": "application/json",
+      };
+      const response = await fetch(url, {
+        method: "POST",
+        headers: headers,
+        credentials: "include",
+        body: JSON.stringify({ type: "deleteSpecification", editspecformId: editspecformId })
+      });
+      const responseData = await response.json();
+      if (responseData.status === "success") {
+        setEditspecformId(null);
+        pageload(true);
+      } else {
+        setEditSpecError(responseData.message);
+      }
+    } catch (err) {
+      console.error(err);
+      setEditSpecError("An error occurred while deleting the specification.");
+    }
+  }
 
 
   return(
@@ -120,11 +149,19 @@ useEffect(() => {
                   </div>
                 </div>
                 <div className={DashboardCss.stickycontainer}>
-                  <button className={DashboardCss.deletespecbtn} onClick={saveSpecification}>Delete</button>
+                  <button className={DashboardCss.deletespecbtn} onClick={() => setConfirmDelete(true)}>Delete</button>
+                    {confimDelete && (
+                      <div className={DashboardCss.deletespec}>
+                        <p>Are you sure you want to delete it?</p>
+                        <div className={DashboardCss.popupbuttons}>
+                          <button onClick={() => deleteSpecification()}>Yes</button>
+                          <button onClick={() => setConfirmDelete(false)}>Cancel</button>
+                        </div>
+                      </div>
+                    )}
                   <button className={DashboardCss.createspecbtn} onClick={saveSpecification}>Save</button>
-                </div>
-                
-              </div>
+                  </div>
+                </div>   
     )
 }
 

@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
 .container{
     font-family: Nunito;
     max-width: 1500px;
@@ -13,7 +17,7 @@
     font-size: 1.2rem;
     text-align: center;
     font-weight: 500;
-    margin-top: 20px;
+    margin-top: 30px;
     font-style: italic;
 }
 .container .error{
@@ -28,18 +32,20 @@
     flex-wrap: wrap;
     gap: 40px;
     justify-content: center;
-    margin-top: 30px;
+    margin: 30px auto;
     padding: 0 20px;
 }
 
 .container .allspec > div{
     height: 300px;
+    width: 300px;
     aspect-ratio: 1/1;
     border-radius: 20px;
     box-shadow: 0 0 10px 10px rgba(128, 128, 128, 0.199);
     cursor: pointer;
     position: relative;
     user-select: none;
+    overflow: hidden;
 }
 .container .allspec > div::before{
     content: '';
@@ -81,7 +87,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    gap: 40px;
+    gap: 45px;
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 .createspec div{
     display: flex;
@@ -309,6 +318,7 @@
     border-radius: 5px;
     gap: 10px;
     cursor: grab;
+    touch-action: none;
 }
 
 .createspecform .column .task:active{
@@ -490,22 +500,87 @@
 .createspecform .deletespecbtn {
   font-size: 1.2rem;
   max-width: 130px;
-  border: 4px solid #00BD91;
+  border: 2px solid #ff3b3b;
   border-radius: 1000px;
   cursor: pointer;
   background-color: white;
-  transition: .2s;
+  transition: 0.2s;
   padding: 5px 20px;
   z-index: 100;
+  color: #ff3b3b;
 }
 
-.createspecform .deletespecbtn:hover{
-    background-color: #03d8a6;
-    color: white;
+.createspecform .deletespecbtn:hover {
+  background-color: #ff7171; /* svetlija od border boje */
+  color: white;
 }
-.createspecform .deletespecbtn:active{
-    scale: 0.95;
+
+.createspecform .deletespecbtn:active {
+  scale: 0.95;
 }
+
+.createspecform .stickycontainer .deletespec {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  transform: translateY(-100%);
+  background-color: white;
+  border: 2px solid #ff3b3b;
+  padding: 10px 14px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  width: max-content;
+  white-space: nowrap;
+  animation: createspecform .1s ease-in forwards;
+}
+
+.createspecform .stickycontainer .deletespec p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #333;
+  text-align: center;
+}
+
+.createspecform .stickycontainer .deletespec .popupbuttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+  gap: 8px;
+}
+
+.createspecform .stickycontainer .deletespec .popupbuttons button {
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s;
+}
+
+/* Darker, richer red Yes button */
+.createspecform .stickycontainer .deletespec .popupbuttons button:first-child {
+  background-color: #c40000; /* rich deep red */
+  color: white;
+}
+
+.createspecform .stickycontainer .deletespec .popupbuttons button:first-child:hover {
+  background-color: #e60000; /* stronger red on hover */
+  color: white;
+}
+
+
+/* Mango-orange Cancel button */
+.createspecform .stickycontainer .deletespec .popupbuttons button:last-child {
+  background-color: #f7c08c;
+  color: black;
+}
+
+.createspecform .stickycontainer .deletespec .popupbuttons button:last-child:hover {
+  background-color: rgb(255, 195, 161);
+}
+
+
 @keyframes createspecform {
     0%{
         opacity: 0;
@@ -524,5 +599,75 @@
     }
     100%{
         transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@media (max-width: 600px) {
+    .createspec{
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
+    .createspec div{
+        width: 100%;
+    }
+    .createspec div:not(:nth-of-type(2)){
+        gap: 0;
+    }
+    .createspec div p{
+        white-space: wrap;
+        text-align: center;
+        font-size: 1.2rem;
+    }
+
+    .createspec div span{
+        font-size: 3rem;
+    }
+
+    .container .allspec > div{
+        height: 150px;
+        width: 150px;
+    }
+
+    .container .allspec > div .creationinfo{
+        font-size: 0.9rem;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .container .allspec img{
+        position: absolute;
+        width: 100%;
+        top: 0;
+        opacity: .1;
+    }
+    .createspecform .basicspecinfo{
+        flex-direction: column;
+    }
+    .createspecform .basicspecinfo input{
+        width: 100%;
+    }
+
+    .createspecform .basicspecinfo > div{
+        margin: auto;
+    }
+
+    .createspecform .basicspecinfo > div > button{
+        padding: 8px 15px;
+    }
+    .createspecform .search input{
+        margin-top: 10px;
+    }
+    .createspecform .search .searchBox{
+        margin-top: 45px;
+        padding: 10px 10px;
+    }
+}
+
+@media (max-width: 500px) {
+    .createspecform{
+        width: 95%;
+        padding: 30px 20px;
+        height: calc(100vh - 100px);
+        margin-top: 90px;
     }
 }

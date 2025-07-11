@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Signup } from './Signup'; 
 import { Login } from './Login'; 
+import { Home } from './Home'; 
 import { Dashboard } from './Dashboard';
 import { Validate } from './Validate';
 import { Profile } from './Profile';
@@ -16,6 +17,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/validate" element={<Validate />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </BrowserRouter>
   )

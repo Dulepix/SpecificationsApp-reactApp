@@ -132,9 +132,9 @@
         width: 80px;
     }
 }
-@media (max-width: 400px) {
+@media (max-width: 500px) {
     .nav div{
-        padding: 5px 5px;
+        padding: 5px 15px;
     }
     .nav ul{
         width: 90%;

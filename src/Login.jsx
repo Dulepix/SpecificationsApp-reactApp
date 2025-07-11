@@ -77,7 +77,7 @@ export function Login(){
                 });
                 const responseData = await response.json();
                 if(responseData.status === "success"){
-                    setUsername(responseData.username);
+                    navigate("/dashboard");
                 }
             } catch (err) {
                 console.error(err);
