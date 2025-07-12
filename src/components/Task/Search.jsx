@@ -100,15 +100,13 @@ const isMobile = () => /Mobi|Android|iPhone/i.test(navigator.userAgent);
   placeholder="Search products..."
   onChange={(e) => searchProducts(e.target.value, 0)}
   onFocus={() => {
-    if (isMobile() && formRef?.current) {
-      setTimeout(() => {
-        formRef.current.scrollTo({ top: 0, behavior: "smooth" });
-        formRef.current.style.marginTop = "-200px";
-      }, 250); // malo čekanje da tastatura izađe
+    if (isMobile()) {
+      formRef.current.scrollTo({ top: 0 });
+      formRef.current.style.marginTop = "-100px";
     }
   }}
   onBlur={() => {
-    if (isMobile() && formRef?.current) {
+    if (isMobile()) {
       formRef.current.style.marginTop = "0px";
     }
   }}
