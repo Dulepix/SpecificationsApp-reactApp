@@ -8,7 +8,6 @@
     width: 100%;
     position: sticky;
     border-bottom: 2px gray solid;
-    z-index: 9999999;
 }
 .nav div{
     display: flex;

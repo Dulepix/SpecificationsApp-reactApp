@@ -90,12 +90,15 @@ const loadMoreProducts = useMemo(() => {
     setSearchBoxData([]);
   }
 
+  const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+
+
 
   return (
     <div className={DashboardCss.search}>
                   <input type="text" value={searchedProduct} placeholder="Search products..." onChange={(e) => searchProducts(e.target.value, 0)}/>
                   <p><span>{createSpecError}</span><span>{createSpecSuccess}</span></p>
-                  {searchBoxData.length > 0 && (<div onScroll={(e) => loadMoreProducts(e)} className={DashboardCss.searchBox}>
+                  {searchBoxData.length > 0 && (<div onScroll={(e) => loadMoreProducts(e)} className={`${DashboardCss.searchBox} ${isMobile ? 'searchBoxMobile' : ''}`}>
                     {searchBoxData.map((product) => ( <div key={product.ProductSizeId} onClick={() => renderProduct(product.ProductSizeId)} className={DashboardCss.product}><span>{product.Proizvod} {product.Sizes}</span></div> ))}
                   </div>)}
                 </div>
