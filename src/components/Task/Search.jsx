@@ -95,22 +95,20 @@ const isMobile = () => /Mobi|Android|iPhone/i.test(navigator.userAgent);
   return (
     <div className={DashboardCss.search}>
                    <input
-        type="text"
-        value={searchedProduct}
-        placeholder="Search products..."
-        onChange={(e) => searchProducts(e.target.value, 0)}
-        onFocus={(e) => {
-          if (isMobile() && formRef?.current) {
-            setTimeout(() => {
-              const inputRect = e.target.getBoundingClientRect();
-              const formRect = formRef.current.getBoundingClientRect();
-              const scrollOffset = inputRect.top - formRect.top - 50;
+  type="text"
+  value={searchedProduct}
+  placeholder="Search products..."
+  onChange={(e) => searchProducts(e.target.value, 0)}
+  onFocus={(e) => {
+    if (isMobile()) {
+      e.target.style.marginBottom = "200px";
+    }
+  }}
+  onBlur={(e) => {
+    e.target.style.marginBottom = "0px";
+  }}
+/>
 
-              formRef.current.scrollBy({ top: scrollOffset, behavior: "smooth" });
-            }, 300);
-          }
-        }}
-      />
                   <p><span>{createSpecError}</span><span>{createSpecSuccess}</span></p>
                   {searchBoxData.length > 0 && (<div onScroll={(e) => loadMoreProducts(e)} className={DashboardCss.searchBox}>
                     {searchBoxData.map((product) => ( <div key={product.ProductSizeId} onClick={() => renderProduct(product.ProductSizeId)} className={DashboardCss.product}><span>{product.Proizvod} {product.Sizes}</span></div> ))}
