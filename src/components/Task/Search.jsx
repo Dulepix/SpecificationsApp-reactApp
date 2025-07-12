@@ -8,30 +8,8 @@ function Search({DashboardCss, createSpecError, setCreateSpecError, createSpecSu
     const [searchedProduct, setSearchedProduct] = useState("");
     const [searchBoxData, setSearchBoxData] = useState([]);
     const lastOffsetRef = useRef(null);
-    const [keyboardIsShown, setKeyboardIsShown] = useState(false);
-  const initialHeightRef = useRef(window.innerHeight);
     
-   useEffect(() => {
-    const interval = setInterval(() => {
-      const heightNow = window.innerHeight;
-      const diff = initialHeightRef.current - heightNow;
-
-      if (diff > 150 && !keyboardIsShown) {
-        setKeyboardIsShown(true);
-      } else if (diff < 100 && keyboardIsShown) {
-        setKeyboardIsShown(false);
-      }
-    }, 800);
-
-    return () => clearInterval(interval);
-  }, [keyboardIsShown]);
-
-  // 🎯 Dodavanje margin-bottom formi kada je tastatura prikazana
-  useEffect(() => {
-    if (formRef?.current) {
-      formRef.current.style.marginTop = keyboardIsShown ? "-200px" : "0px";
-    }
-  }, [keyboardIsShown, formRef]);
+  
 
  const searchProducts = async (product, offset) => {
 
@@ -117,11 +95,21 @@ const isMobile = () => /Mobi|Android|iPhone/i.test(navigator.userAgent);
   return (
     <div className={DashboardCss.search}>
 <input
-        type="text"
-        value={searchedProduct}
-        placeholder="Search products..."
-        onChange={(e) => searchProducts(e.target.value, 0)}
-      />
+  type="text"
+  value={searchedProduct}
+  placeholder="Search products..."
+  onChange={(e) => searchProducts(e.target.value, 0)}
+  onFocus={() => {
+    if (isMobile()) {
+      formRef.current.style.marginTop = "-200px";
+    }
+  }}
+  onBlur={() => {
+    if (isMobile()) {
+      formRef.current.style.marginTop = "0px";
+    }
+  }}
+/>
 
                   <p><span>{createSpecError}</span><span>{createSpecSuccess}</span></p>
                   {searchBoxData.length > 0 && (<div onScroll={(e) => loadMoreProducts(e)} className={DashboardCss.searchBox}>
