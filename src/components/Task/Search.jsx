@@ -99,25 +99,21 @@ const isMobile = () => /Mobi|Android|iPhone/i.test(navigator.userAgent);
   value={searchedProduct}
   placeholder="Search products..."
   onChange={(e) => searchProducts(e.target.value, 0)}
-  onFocus={(e) => {
+  onFocus={() => {
     if (isMobile() && formRef?.current) {
-      // Scroll to input's position inside the popup
       setTimeout(() => {
-        const inputRect = e.target.getBoundingClientRect();
-        const formRect = formRef.current.getBoundingClientRect();
-        const scrollOffset = inputRect.top - formRect.top - 20; // optional margin above
-
-        formRef.current.scrollBy({ top: scrollOffset, behavior: "smooth" });
-      }, 250); // Delay to wait for keyboard to open
+        formRef.current.scrollTo({ top: 0, behavior: "smooth" });
+        formRef.current.style.marginTop = "-200px";
+      }, 250); // malo čekanje da tastatura izađe
     }
   }}
   onBlur={() => {
     if (isMobile() && formRef?.current) {
-      // Optional: reset scroll position
-      formRef.current.scrollBy({ top: -formRef.current.scrollTop, behavior: "smooth" });
+      formRef.current.style.marginTop = "0px";
     }
   }}
 />
+
 
 
                   <p><span>{createSpecError}</span><span>{createSpecSuccess}</span></p>
