@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import VisibilityDropDown from "../components/VisibilityDropDown";
@@ -20,6 +20,9 @@ function EditSpecificationForm({DashboardCss, editspecformId, setEditspecformId,
   const [priceOld, setPriceOld] = useState("");
 
   const [confimDelete, setConfirmDelete] = useState(false);
+
+  const formRef = useRef(null);
+  
 
 useEffect(() => {
   const fetchData = async () => {
@@ -132,14 +135,14 @@ useEffect(() => {
 
 
   return(
-        <div className={DashboardCss.createspecform}>
+        <div ref={formRef} className={DashboardCss.createspecform}>
           <h1>Edit specification</h1>
                 <button className={DashboardCss.closeform} onClick={() => {setEditspecformId(null)}}><FontAwesomeIcon icon={faXmark}/></button>
                 <div className={DashboardCss.basicspecinfo}>
                   <input type="text" value={specName} onChange={(e) => setSpecName(e.target.value)} placeholder="Specification name" />
                   <VisibilityDropDown DashboardCss={DashboardCss} selectedOption={selectedOption} setSelectedOption={setSelectedOption}/>
                 </div>
-                <Search DashboardCss={DashboardCss} createSpecError={editSpecError} setCreateSpecError={setEditSpecError} createSpecSuccess={editSpecFormSuccess} data={data} setData={setData}/>
+                <Search DashboardCss={DashboardCss} createSpecError={editSpecError} setCreateSpecError={setEditSpecError} createSpecSuccess={editSpecFormSuccess} data={data} setData={setData} formRef={formRef}/>
                 {data.length > 0 && (<DndContextSection DashboardCss={DashboardCss} data={data} setData={setData} />)}
                 <div className={DashboardCss.specificationfooter}>
                   <button disabled={!data.filter(item => item.Checked).length > 0} onClick={() => {setData((prevData) => prevData.filter(item => !item.Checked))}}>remove</button>
