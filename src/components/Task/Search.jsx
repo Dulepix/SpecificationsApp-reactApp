@@ -99,17 +99,26 @@ const isMobile = () => /Mobi|Android|iPhone/i.test(navigator.userAgent);
   value={searchedProduct}
   placeholder="Search products..."
   onChange={(e) => searchProducts(e.target.value, 0)}
-  onFocus={() => {
-    if (isMobile()) {
-      formRef.current.style.marginTop = "-200px";
+  onFocus={(e) => {
+    if (isMobile() && formRef?.current) {
+      // Scroll to input's position inside the popup
+      setTimeout(() => {
+        const inputRect = e.target.getBoundingClientRect();
+        const formRect = formRef.current.getBoundingClientRect();
+        const scrollOffset = inputRect.top - formRect.top - 20; // optional margin above
+
+        formRef.current.scrollBy({ top: scrollOffset, behavior: "smooth" });
+      }, 250); // Delay to wait for keyboard to open
     }
   }}
   onBlur={() => {
-    if (isMobile()) {
-      formRef.current.style.marginTop = "0px";
+    if (isMobile() && formRef?.current) {
+      // Optional: reset scroll position
+      formRef.current.scrollBy({ top: -formRef.current.scrollTop, behavior: "smooth" });
     }
   }}
 />
+
 
                   <p><span>{createSpecError}</span><span>{createSpecSuccess}</span></p>
                   {searchBoxData.length > 0 && (<div onScroll={(e) => loadMoreProducts(e)} className={DashboardCss.searchBox}>
