@@ -82,6 +82,20 @@ export function Dashboard() {
     pageload(false);
   }, [pageload]); 
 
+  useEffect(() => {
+  const shouldBlockScroll = createspecformCheck || editspecformId;
+
+  if (shouldBlockScroll) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+
+  return () => {
+    document.body.style.overflow = "auto"; // Clean up if component unmounts
+  };
+}, [createspecformCheck, editspecformId]);
+
   if (pageloading) {
     return null;
   }

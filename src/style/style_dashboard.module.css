@@ -137,7 +137,8 @@
     transform: translate(-50%);
     background-color: white;
     padding: 30px;
-    border-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
     box-shadow: 0 0 10px 10px rgba(128, 128, 128, 0.199);
     height: calc(100vh - 130px);
     margin-top: 110px;
