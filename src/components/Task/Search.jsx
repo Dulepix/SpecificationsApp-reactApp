@@ -100,13 +100,13 @@ const isMobile = () => /Mobi|Android|iPhone/i.test(navigator.userAgent);
   placeholder="Search products..."
   onChange={(e) => searchProducts(e.target.value, 0)}
   onFocus={() => {
-    if (isMobile() && formRef?.current) {
-      formRef.current.style.marginBottom = "200px";
+    if (isMobile()) {
+      formRef.current.style.marginTop = "-200px";
     }
   }}
   onBlur={() => {
-    if (isMobile() && formRef?.current) {
-      formRef.current.style.marginBottom = "0px";
+    if (isMobile()) {
+      formRef.current.style.marginTop = "0px";
     }
   }}
 />

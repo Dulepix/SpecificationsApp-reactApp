@@ -61,7 +61,7 @@ const formRef = useRef(null);
  }
 
     return(
-        <div className={DashboardCss.createspecform}>
+        <div ref={formRef} className={DashboardCss.createspecform}>
           <h1>Create specification</h1>
                 <button className={DashboardCss.closeform} onClick={() => {setCreatespecformCheck(false)}}><FontAwesomeIcon icon={faXmark}/></button>
                 <div className={DashboardCss.basicspecinfo}>
