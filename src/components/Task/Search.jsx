@@ -90,15 +90,34 @@ const loadMoreProducts = useMemo(() => {
     setSearchBoxData([]);
   }
 
-  const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-
-
 
   return (
     <div className={DashboardCss.search}>
-                  <input type="text" value={searchedProduct} placeholder="Search products..." onChange={(e) => searchProducts(e.target.value, 0)}/>
+                 <input
+  type="text"
+  value={searchedProduct}
+  placeholder="Search products..."
+  onChange={(e) => searchProducts(e.target.value, 0)}
+  onFocus={() => {
+    setTimeout(() => {
+      // Ако је доступан visualViewport API (ради на већини модерних телефона)
+      if (window.visualViewport) {
+        const viewportHeight = window.visualViewport.height;
+        const inputY = document.activeElement.getBoundingClientRect().top;
+        
+        if (inputY > viewportHeight / 2) {
+          window.scrollBy({ top: inputY - viewportHeight / 2, behavior: "smooth" });
+        }
+      } else {
+        // Fallback за старије прегледаче
+        window.scrollBy({ top: 100, behavior: "smooth" });
+      }
+    }, 300); // сачекај да тастатура искочи
+  }}
+/>
+
                   <p><span>{createSpecError}</span><span>{createSpecSuccess}</span></p>
-                  {searchBoxData.length > 0 && (<div onScroll={(e) => loadMoreProducts(e)} className={`${DashboardCss.searchBox} ${isMobile ? 'searchBoxMobile' : ''}`}>
+                  {searchBoxData.length > 0 && (<div onScroll={(e) => loadMoreProducts(e)} className={DashboardCss.searchBox}>
                     {searchBoxData.map((product) => ( <div key={product.ProductSizeId} onClick={() => renderProduct(product.ProductSizeId)} className={DashboardCss.product}><span>{product.Proizvod} {product.Sizes}</span></div> ))}
                   </div>)}
                 </div>

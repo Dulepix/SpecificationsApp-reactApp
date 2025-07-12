@@ -580,20 +580,6 @@
   background-color: rgb(255, 195, 161);
 }
 
-.searchBoxMobile {
-  position: fixed;
-  top: 55px; /* или прилагоди у односу на input */
-  left: 0;
-  right: 0;
-  height: 200px;
-  overflow-y: scroll;
-  background-color: rgb(241, 241, 241);
-  padding: 10px 20px;
-  resize: vertical;
-  border: 2px lightgray solid;
-  z-index: 9999;
-}
-
 
 @keyframes createspecform {
     0%{
