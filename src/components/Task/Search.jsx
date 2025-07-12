@@ -29,7 +29,7 @@ function Search({DashboardCss, createSpecError, setCreateSpecError, createSpecSu
   // 🎯 Dodavanje margin-bottom formi kada je tastatura prikazana
   useEffect(() => {
     if (formRef?.current) {
-      formRef.current.style.marginBottom = keyboardIsShown ? "200px" : "0px";
+      formRef.current.style.marginTop = keyboardIsShown ? "-200px" : "0px";
     }
   }, [keyboardIsShown, formRef]);
 
