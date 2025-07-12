@@ -8,6 +8,8 @@ function Search({DashboardCss, createSpecError, setCreateSpecError, createSpecSu
     const [searchedProduct, setSearchedProduct] = useState("");
     const [searchBoxData, setSearchBoxData] = useState([]);
     const lastOffsetRef = useRef(null);
+    const [keyboardIsShown, setKeyboardIsShown] = useState(false);
+  const initialHeightRef = useRef(window.innerHeight);
     
    useEffect(() => {
     const interval = setInterval(() => {
