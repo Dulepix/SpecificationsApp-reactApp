@@ -94,18 +94,20 @@ const isMobile = () => /Mobi|Android|iPhone/i.test(navigator.userAgent);
 
   return (
     <div className={DashboardCss.search}>
-                   <input
+<input
   type="text"
   value={searchedProduct}
   placeholder="Search products..."
   onChange={(e) => searchProducts(e.target.value, 0)}
-  onFocus={(e) => {
-    if (isMobile()) {
-      e.target.style.marginBottom = "200px";
+  onFocus={() => {
+    if (isMobile() && formRef?.current) {
+      formRef.current.style.marginBottom = "200px";
     }
   }}
-  onBlur={(e) => {
-    e.target.style.marginBottom = "0px";
+  onBlur={() => {
+    if (isMobile() && formRef?.current) {
+      formRef.current.style.marginBottom = "0px";
+    }
   }}
 />
 
