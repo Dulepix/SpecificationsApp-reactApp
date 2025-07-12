@@ -16,7 +16,7 @@ function CreateSpecificationForm({ DashboardCss, setCreatespecformCheck, setCrea
 
     
 
-
+const formRef = useRef(null);
 
 
 
@@ -68,7 +68,7 @@ function CreateSpecificationForm({ DashboardCss, setCreatespecformCheck, setCrea
                   <input type="text" value={specName} onChange={(e) => setSpecName(e.target.value)} placeholder="Specification name" />
                   <VisibilityDropDown DashboardCss={DashboardCss} selectedOption={selectedOption} setSelectedOption={setSelectedOption}/>
                 </div>
-                <Search DashboardCss={DashboardCss} createSpecError={createSpecError} setCreateSpecError={setCreateSpecError} data={data} setData={setData}/>
+                <Search DashboardCss={DashboardCss} createSpecError={createSpecError} setCreateSpecError={setCreateSpecError} data={data} setData={setData} formRef={formRef}/>
                 {data.length > 0 && (<DndContextSection DashboardCss={DashboardCss} data={data} setData={setData} />)}
                 <div className={DashboardCss.specificationfooter}>
                   <button disabled={!data.filter(item => item.Checked).length > 0} onClick={() => {setData((prevData) => prevData.filter(item => !item.Checked))}}>remove</button>

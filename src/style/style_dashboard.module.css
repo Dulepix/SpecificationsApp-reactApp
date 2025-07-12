@@ -673,18 +673,3 @@
         transform: translate(-50%, -50%);
     }
 }
-
-@media (max-width: 768px) {
-  .searchBoxMobile {
-    position: fixed;
-    top: 60px;
-    left: 0;
-    right: 0;
-    max-height: 40vh;
-    overflow-y: auto;
-    background-color: rgb(241, 241, 241);
-    padding: 10px 20px;
-    border: 2px lightgray solid;
-    z-index: 9999;
-  }
-}
