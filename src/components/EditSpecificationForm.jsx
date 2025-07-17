@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faXmark, faDownload } from '@fortawesome/free-solid-svg-icons';
 import VisibilityDropDown from "../components/VisibilityDropDown";
 import BackendLink from "./BackendLink";
 import DndContextSection from "./Task/DndContextSection";
@@ -20,6 +20,9 @@ function EditSpecificationForm({DashboardCss, editspecformId, setEditspecformId,
   const [priceOld, setPriceOld] = useState("");
 
   const [confimDelete, setConfirmDelete] = useState(false);
+  const [confirmDownload, setConfirmDownload] = useState(false)
+
+  const [downloadEmail, setDownloadEmail] = useState("")
 
   const formRef = useRef(null);
   
@@ -133,6 +136,35 @@ useEffect(() => {
     }
   }
 
+const downloadSpec = async () => {
+  try {
+    const response = await fetch(BackendLink() + "/Includes/dashboard.inc.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ type: "downloadSpecification", editspecformId }),
+    });
+
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `specifikacija_${editspecformId}.xlsx`;
+    a.click();
+    a.remove();
+  } catch (err) {
+    console.error(err);
+    setEditSpecError("Došlo je do greške pri preuzimanju fajla.");
+  }
+};
+
+
+
+  const sendSpecOnEmail = async () => {
+    console.log("poslato")
+  }
+
+
 
   return(
         <div ref={formRef} className={DashboardCss.createspecform}>
@@ -152,7 +184,7 @@ useEffect(() => {
                   </div>
                 </div>
                 <div className={DashboardCss.stickycontainer}>
-                  <button className={DashboardCss.deletespecbtn} onClick={() => setConfirmDelete(true)}>Delete</button>
+                  <button className={DashboardCss.deletespecbtn} onClick={() => {setConfirmDelete(true); setConfirmDownload(false);}}>Delete</button>
                     {confimDelete && (
                       <div className={DashboardCss.deletespec}>
                         <p>Are you sure you want to delete it?</p>
@@ -162,6 +194,17 @@ useEffect(() => {
                         </div>
                       </div>
                     )}
+                    {confirmDownload && (
+                      <div className={DashboardCss.downloadspec}>
+                          <button onClick={() => downloadSpec()}>Just download</button><hr />
+                          <input type="email" name="email" value={downloadEmail} onChange={(e) => setDownloadEmail(e.target.value)} placeholder="Email:"/>
+                          <div className={DashboardCss.popupbuttons}>
+                            <button onClick={() => sendSpecOnEmail()}>Send</button>
+                            <button onClick={() => setConfirmDownload(false)}>Cancel</button>
+                          </div>
+                      </div>
+                    )}
+                  <button className={DashboardCss.downloadbtn} onClick={() => {setConfirmDownload(true); setConfirmDelete(false);}}><FontAwesomeIcon icon={faDownload}/></button>
                   <button className={DashboardCss.createspecbtn} onClick={saveSpecification}>Save</button>
                   </div>
                 </div>   

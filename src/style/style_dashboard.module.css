@@ -543,14 +543,14 @@
   text-align: center;
 }
 
-.createspecform .stickycontainer .deletespec .popupbuttons {
+.createspecform .stickycontainer .deletespec .popupbuttons, .createspecform .stickycontainer .downloadspec .popupbuttons{
   display: flex;
   justify-content: center;
   margin-top: 8px;
   gap: 8px;
 }
 
-.createspecform .stickycontainer .deletespec .popupbuttons button {
+.createspecform .stickycontainer .deletespec .popupbuttons button, .createspecform .stickycontainer .downloadspec .popupbuttons button {
   padding: 5px 10px;
   border-radius: 8px;
   font-size: 0.9rem;
@@ -572,14 +572,88 @@
 
 
 /* Mango-orange Cancel button */
-.createspecform .stickycontainer .deletespec .popupbuttons button:last-child {
+.createspecform .stickycontainer .deletespec .popupbuttons button:last-child, .createspecform .stickycontainer .downloadspec .popupbuttons button:last-child {
   background-color: #f7c08c;
   color: black;
 }
 
-.createspecform .stickycontainer .deletespec .popupbuttons button:last-child:hover {
+.createspecform .stickycontainer .deletespec .popupbuttons button:last-child:hover, .createspecform .stickycontainer .downloadspec .popupbuttons button:last-child:hover {
   background-color: rgb(255, 195, 161);
 }
+
+.createspecform .stickycontainer .downloadbtn {
+  border: 2px solid gray;
+  background-color: white;
+  font-size: 1.6rem;
+  padding: 8px 10px;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.createspecform .stickycontainer .downloadbtn:hover {
+  background-color: rgb(233, 233, 233);
+}
+
+.createspecform .stickycontainer .downloadbtn:active{
+  transform: scale(0.95);
+}
+.createspecform .stickycontainer .downloadspec {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  background-color: white;
+  border: 2px solid gray;
+  padding: 10px 14px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  animation: createspecform .1s ease-in forwards;
+  margin-left: 5px;
+  width: 90%;
+  max-width: 300px;
+}
+
+
+.createspecform .stickycontainer .downloadspec > button {
+display: block;
+  background-color: white;  
+  color: black;
+  border: 2px solid gray;
+  border-radius: 1000px;
+  padding: 8px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 0 auto 10px auto;
+  transition: .2s;
+}
+
+.createspecform .stickycontainer .downloadspec > button:hover{
+  background-color: rgb(233, 233, 233);
+}
+
+.createspecform .stickycontainer .downloadspec > button:active{
+    background-color: rgb(221, 221, 221);
+}
+
+.createspecform .stickycontainer .downloadspec input {
+  padding: 5px 10px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 1000px;
+  text-align: center;
+  outline: none;
+  transition: border 0.2s ease;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.createspecform .stickycontainer .downloadspec input:focus {
+  border-color: #00BD91;
+}
+
 
 
 @keyframes createspecform {
