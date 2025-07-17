@@ -145,6 +145,15 @@ const downloadSpec = async () => {
       body: JSON.stringify({ type: "downloadSpecification", editspecformId }),
     });
 
+    // ❗ Ako nije 2xx status (npr. 500), pročitaj tekst greške
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Server error:", errorText);
+      setEditSpecError(errorText || "Došlo je do greške pri preuzimanju fajla.");
+      return;
+    }
+
+    // ✅ Ako je sve OK, napravi Blob i preuzmi
     const blob = await response.blob();
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -157,6 +166,7 @@ const downloadSpec = async () => {
     setEditSpecError("Došlo je do greške pri preuzimanju fajla.");
   }
 };
+
 
 
 
