@@ -1,0 +1,71 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;     
+}
+
+.sekcija {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin: auto;
+    width: 90%;
+    max-width: 1200px;
+    gap: 50px;
+    font-family: Nunito;
+    position: relative;
+}
+.sekcija div:first-of-type{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+}
+.sekcija img{
+    height: calc(100vh - 200px);
+    max-height: 800px;
+    border-radius: 30px;
+}
+.sekcija button{
+    background-color: #00BD91;
+    padding: 5px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;    
+    width: 150px;
+    transition: .2s;
+}
+
+.sekcija button:hover{
+    background-color: #00a67a;
+}
+
+@media (max-width: 900px) {
+    .sekcija img{
+        height: calc(100vh - 300px);
+    }
+}
+
+@media (max-width: 780px) {
+    .sekcija div:first-of-type{
+        align-items: center;
+        margin-top: 40vh;
+        transform: translate(0, -50%);
+    }
+    .sekcija div:last-of-type{
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        width: 100%
+    }
+    .sekcija img{
+        height: calc(100vh - 150px);
+        display: block;
+        margin: auto;
+        opacity: .1;
+    }
+}

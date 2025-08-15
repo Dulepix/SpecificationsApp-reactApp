@@ -1,0 +1,85 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.sekcija{
+    font-family: Nunito;
+}
+
+.sekcija > h1{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.sekcija .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+    max-width: 700px;
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+
+.sekcija .container > div{
+    width: 100%;
+    display: flex;
+    margin: 10px 0;
+    align-items: center;
+}
+
+.sekcija .container > div label{
+    width: 150px;
+}
+
+.sekcija .container > div input{
+    flex: 1;
+    font-size: 1rem;
+    padding: 5px 10px;
+    border: 2px solid lightgray;
+    border-radius: 100px;
+}
+
+.sekcija .container button{
+    margin: 5px 0 0 auto;
+    font-size: 1rem;
+    max-width: 130px;
+    border: 3px solid #00BD91;
+    border-radius: 1000px;
+    cursor: pointer;
+    background-color: white;
+    transition: .2s;
+    padding: 5px 20px;
+}
+
+.sekcija .container button:hover{
+    background-color: #03d8a6;
+    color: white;
+}
+
+.sekcija .container p{
+    margin: 5px 0;
+    font-size: 1rem;
+}
+
+.sekcija .container p.error{
+    color: red;
+}
+.sekcija .container .success{
+    color: green;
+}
+
+@media (max-width: 600px) {
+    .sekcija .container > div{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .sekcija .container > div input{
+        width: 100%;    
+    }
+    
+}
