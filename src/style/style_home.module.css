@@ -65,7 +65,9 @@
     .sekcija img{
         height: calc(100vh - 150px);
         display: block;
-        margin: auto;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
         opacity: .1;
     }
 }
