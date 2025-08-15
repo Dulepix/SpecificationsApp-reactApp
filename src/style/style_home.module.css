@@ -52,8 +52,9 @@
 @media (max-width: 780px) {
     .sekcija div:first-of-type{
         align-items: center;
-        margin-top: 40vh;
+        margin-top: 38vh;
         transform: translate(0, -50%);
+        z-index: 100;
     }
     .sekcija div:last-of-type{
         position: absolute;
